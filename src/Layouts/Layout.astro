@@ -1,17 +1,26 @@
 ---
 import '../styles/global.css';
+
+// 1. Definimos qué datos necesita este Layout para funcionar
+interface Props {
+	title: string;
+	lang: string;
+}
+
+// 2. Extraemos esos datos de las propiedades que le pasemos
+const { title, lang } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>My Portfolio</title>
+		<title>{title}</title>
 	</head>
-	<body>
+	<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300">
 		<slot />
 	</body>
 </html>
