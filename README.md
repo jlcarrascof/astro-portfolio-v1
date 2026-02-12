@@ -1,43 +1,22 @@
-# Astro Starter Kit: Minimal
+# 🚀 Portfolio (Astro + Tailwind)
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Un portafolio moderno, bilingüe y de alto rendimiento construido con la última tecnología web. Diseñado para convertir visitas en oportunidades.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🛠️ Tech Stack
+- **Framework:** Astro 5.0
+- **Styling:** Tailwind CSS v4
+- **Automation:** n8n (Local)
+- **Deployment:** Netlify/Vercel (Coming soon)
 
-## 🚀 Project Structure
+## ✨ Características (Día 1)
+- [x] **Arquitectura i18n:** Rutas nativas `/es` y `/en`.
+- [x] **Dark Mode:** Persistencia de tema y prevención de parpadeo (FOUC).
+- [x] **UI Moderna:** Componentes responsivos y Glassmorphism.
+- [x] **Lead Magnet:** Integración preparada para automatización con n8n.
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🏃‍♂️ Cómo correrlo localmente
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Clonar el repositorio.
+2. Instalar dependencias:
+   ```bash
+   npm install
