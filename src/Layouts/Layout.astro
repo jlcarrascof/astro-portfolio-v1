@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Header from '../components/Header.astro';
 
 // 1. Definimos qué datos necesita este Layout para funcionar
 interface Props {
@@ -32,6 +33,7 @@ const { title, lang } = Astro.props;
 		}
 	</script>
 	<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300">
-		<slot />
+    	<Header lang={lang} />
+	    <slot />
 	</body>
 </html>
