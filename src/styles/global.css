@@ -1,1 +1,4 @@
 @import "tailwindcss";
+
+/* 👇 ESTA es la línea que obliga a Tailwind a obedecer tu botón */
+@variant dark (&:where(.dark, .dark *));
