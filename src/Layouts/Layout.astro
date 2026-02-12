@@ -20,6 +20,17 @@ const { title, lang } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
+	<script is:inline>
+		// Este script evita el parpadeo (FOUC) al cargar la página
+		if (
+			localStorage.theme === 'dark' ||
+			(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+		) {
+			document.documentElement.classList.add('dark');
+		} else {
+			document.documentElement.classList.remove('dark');
+		}
+	</script>
 	<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300">
 		<slot />
 	</body>
