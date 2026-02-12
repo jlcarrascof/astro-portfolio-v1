@@ -1,0 +1,36 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+// Recibimos el idioma para saber a dónde apuntar los enlaces
+const { lang } = Astro.props;
+
+const homeLink = lang === 'es' ? '/es' : '/en';
+const projectsLink = lang === 'es' ? '#proyectos' : '#projects';
+const aboutLink = lang === 'es' ? '#sobre-mi' : '#about';
+---
+
+<header class="fixed w-full top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="shrink-0">
+        <a href={homeLink} class="text-2xl font-bold text-blue-600 dark:text-blue-400">
+          Dev<span class="text-slate-900 dark:text-white">Portfolio</span>.
+        </a>
+      </div>
+
+      <nav class="hidden md:flex space-x-8">
+        <a href={projectsLink} class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+          {lang === 'es' ? 'Proyectos' : 'Projects'}
+        </a>
+        <a href={aboutLink} class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+          {lang === 'es' ? 'Sobre Mí' : 'About Me'}
+        </a>
+      </nav>
+
+      <div class="flex items-center space-x-4">
+        <ThemeToggle />
+        <span class="text-sm font-bold text-gray-500">{lang.toUpperCase()}</span>
+      </div>
+    </div>
+  </div>
+</header>
