@@ -1,25 +1,22 @@
 ---
 const { lang } = Astro.props;
 
-// Textos según idioma
 const t = {
   es: {
-    title: "Empecemos a trabajar",
-    subtitle: "¿Tienes un proyecto en mente? Escríbeme y lo hacemos realidad.",
-    name: "Tu Nombre",
-    email: "Tu Correo Electrónico",
-    message: "Cuéntame sobre tu proyecto...",
-    btn: "Enviar Mensaje",
-    sending: "Enviando...",
+    title: "¿Buscando Talento Tech?",
+    subtitle: "Hablemos sobre cómo puedo integrarme a tu equipo y aportar valor desde el primer día.",
+    name: "Nombre del Recruiter / Empresa",
+    email: "Correo Corporativo",
+    message: "Detalles sobre la vacante...",
+    btn: "Iniciar Conversación",
   },
   en: {
-    title: "Let's work together",
-    subtitle: "Have a project in mind? Send me a message and let's make it happen.",
-    name: "Your Name",
-    email: "Your Email Address",
-    message: "Tell me about your project...",
-    btn: "Send Message",
-    sending: "Sending...",
+    title: "Looking for Tech Talent?",
+    subtitle: "Let's discuss how I can join your team and deliver value from day one.",
+    name: "Recruiter Name / Company",
+    email: "Corporate Email",
+    message: "Details about the role...",
+    btn: "Start Conversation",
   }
 };
 
@@ -28,67 +25,37 @@ const content = lang === 'es' ? t.es : t.en;
 
 <section id="contact" class="py-20 bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
         {content.title}
       </h2>
-      <p class="text-xl text-slate-600 dark:text-slate-300">
+      <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
         {content.subtitle}
       </p>
     </div>
 
-    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 md:p-12 border border-gray-100 dark:border-slate-700">
-      <form id="contact-form" class="space-y-6">
-        
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 md:p-12 border border-gray-100 dark:border-slate-700 relative overflow-hidden">
+      <div class="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full bg-blue-500/10 blur-2xl"></div>
+      
+      <form id="contact-form" class="space-y-6 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{content.name}</label>
-            <input 
-              type="text" 
-              name="name" 
-              id="name" 
-              required
-              class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-              placeholder="Juan Pérez"
-            />
+            <input type="text" name="name" id="name" required class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all" />
           </div>
-
           <div>
             <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{content.email}</label>
-            <input 
-              type="email" 
-              name="email" 
-              id="email" 
-              required
-              class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-              placeholder="juan@empresa.com"
-            />
+            <input type="email" name="email" id="email" required class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all" />
           </div>
         </div>
-
         <div>
           <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{content.message}</label>
-          <textarea 
-            name="message" 
-            id="message" 
-            rows="4" 
-            required
-            class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
-          ></textarea>
+          <textarea name="message" id="message" rows="4" required class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none"></textarea>
         </div>
-
-        <button 
-          type="submit"
-          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-all shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1"
-        >
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-all shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1">
           {content.btn}
         </button>
-
-        <p id="form-status" class="hidden text-center text-sm font-medium mt-4"></p>
-
       </form>
     </div>
-
   </div>
 </section>
