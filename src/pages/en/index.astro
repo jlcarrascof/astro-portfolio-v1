@@ -1,14 +1,22 @@
 ---
 import Layout from '../../Layouts/Layout.astro';
 import Hero from '../../components/Hero.astro';
+import Experience from '../../components/Experience.astro'; 
 import ContactForm from '../../components/ContactForm.astro';
 import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
 ---
 
 <Layout title="Javier J. Martínez F. - Software Engineer" lang="en">
-	<main>
-		<Hero lang="en" />
-        <ContactForm lang="en" />
-	</main>
-    <WhatsAppFloat />
+  <main>
+    <Hero lang="en" />
+    
+    <Experience lang="en" />
+    
+    <section id="projects" class="py-20 text-center">
+        <h2 class="text-3xl font-bold">My Projects (Tomorrow...)</h2>
+    </section>
+
+    <ContactForm lang="en" />
+  </main>
+  <WhatsAppFloat />
 </Layout>
