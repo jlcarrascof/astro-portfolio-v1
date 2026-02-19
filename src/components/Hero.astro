@@ -1,0 +1,65 @@
+---
+const { lang } = Astro.props;
+
+const t = {
+  es: {
+    badge: "Disponible para contratación inmediata",
+    title: "Ingeniero de Software",
+    titleHighlight: "Full Stack & Cloud.",
+    subtitle: "Desarrollador con experiencia en arquitecturas escalables. Especializado en NestJS, Vue 3, Docker y AWS. Busco aportar valor en equipos de alto rendimiento.",
+    ctaPrimary: "Descargar CV", 
+    ctaSecondary: "Ver Experiencia",
+  },
+  en: {
+    badge: "Available for immediate hire",
+    title: "Software Engineer",
+    titleHighlight: "Full Stack & Cloud.",
+    subtitle: "Developer experienced in scalable architectures. Specialized in NestJS, Vue 3, Docker, and AWS. Looking to drive value in high-performance teams.",
+    ctaPrimary: "Download Resume",
+    ctaSecondary: "View Experience",
+  }
+};
+
+const content = lang === 'es' ? t.es : t.en;
+---
+
+<section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+  <div class="absolute top-0 left-1/2 w-full -translate-x-1/2 h-full z-0 pointer-events-none">
+    <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500/30 rounded-full blur-[128px] dark:bg-blue-600/20"></div>
+    <div class="absolute bottom-20 right-10 w-72 h-72 bg-purple-500/30 rounded-full blur-[128px] dark:bg-purple-600/20"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800 mb-8 animate-fade-in-down">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+      </span>
+      <span class="text-sm font-medium text-blue-800 dark:text-blue-200">
+        {content.badge}
+      </span>
+    </div>
+
+    <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6">
+      {content.title} <br class="hidden md:block" />
+      <span class="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+        {content.titleHighlight}
+      </span>
+    </h1>
+
+    <p class="mt-4 text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-10">
+      {content.subtitle}
+    </p>
+
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="#contact" class="px-8 py-4 text-lg font-semibold rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1">
+        {content.ctaPrimary}
+      </a>
+      <a href="#projects" class="px-8 py-4 text-lg font-semibold rounded-full bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
+        {content.ctaSecondary}
+      </a>
+    </div>
+
+  </div>
+</section>

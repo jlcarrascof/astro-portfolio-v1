@@ -1,0 +1,109 @@
+---
+const { lang } = Astro.props;
+
+const t = {
+  es: {
+    title: "Arsenal Tecnológico",
+    subtitle: "Herramientas y tecnologías que uso para dar vida a mis proyectos.",
+    frontend: "Frontend & UI",
+    backend: "Backend & Cloud",
+    tools: "Herramientas & Otros"
+  },
+  en: {
+    title: "Tech Stack",
+    subtitle: "Tools and technologies I use to bring projects to life.",
+    frontend: "Frontend & UI",
+    backend: "Backend & Cloud",
+    tools: "Tools & Others"
+  }
+};
+
+const content = lang === 'es' ? t.es : t.en;
+
+// Tus habilidades (Puedes agregar o quitar las que quieras)
+const skills = {
+  frontend: [
+    { name: "Vue.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+    { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+    { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+    { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+    { name: "Astro", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg" }
+  ],
+  backend: [
+    { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+    { name: "NestJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg" },
+    { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" }, 
+    { name: "Laravel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" }, 
+    { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+    { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+    { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" }
+  ],
+  tools: [
+    { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+    { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+    { name: "Linux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+    { name: "Nginx", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" },
+    { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" }
+  ]
+};
+---
+
+<section id="experience" class="py-20 bg-white dark:bg-slate-800 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+        {content.title}
+      </h2>
+      <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+        {content.subtitle}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <div class="bg-gray-50 dark:bg-slate-900 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-slate-700 hover:shadow-xl transition-shadow">
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          💻 {content.frontend}
+        </h3>
+        <div class="grid grid-cols-3 gap-4">
+          {skills.frontend.map(skill => (
+            <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-white dark:hover:bg-slate-800 transition-colors group">
+              <img src={skill.icon} alt={skill.name} class="w-10 h-10 group-hover:scale-110 transition-transform" />
+              <span class="text-xs font-medium text-slate-600 dark:text-slate-400">{skill.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="bg-gray-50 dark:bg-slate-900 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-slate-700 hover:shadow-xl transition-shadow">
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          ⚙️ {content.backend}
+        </h3>
+        <div class="grid grid-cols-3 gap-4">
+          {skills.backend.map(skill => (
+            <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-white dark:hover:bg-slate-800 transition-colors group">
+              <img src={skill.icon} alt={skill.name} class="w-10 h-10 group-hover:scale-110 transition-transform" />
+              <span class="text-xs font-medium text-slate-600 dark:text-slate-400">{skill.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="bg-gray-50 dark:bg-slate-900 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-slate-700 hover:shadow-xl transition-shadow">
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          🛠️ {content.tools}
+        </h3>
+        <div class="grid grid-cols-3 gap-4">
+          {skills.tools.map(skill => (
+            <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-white dark:hover:bg-slate-800 transition-colors group">
+              <img src={skill.icon} alt={skill.name} class="w-10 h-10 group-hover:scale-110 transition-transform" />
+              <span class="text-xs font-medium text-slate-600 dark:text-slate-400">{skill.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
