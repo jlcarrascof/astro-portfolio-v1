@@ -9,6 +9,8 @@ const t = {
     subtitle: "Desarrollador con experiencia en arquitecturas escalables. Especializado en NestJS, Vue 3, Docker y AWS. Busco aportar valor en equipos de alto rendimiento.",
     ctaPrimary: "Descargar CV", 
     ctaSecondary: "Ver Experiencia",
+    cvFile: "/cv-es.pdf",                     
+    cvName: "Javier_Martinez_CV_ES.pdf"
   },
   en: {
     badge: "Available for immediate hire",
@@ -17,6 +19,8 @@ const t = {
     subtitle: "Developer experienced in scalable architectures. Specialized in NestJS, Vue 3, Docker, and AWS. Looking to drive value in high-performance teams.",
     ctaPrimary: "Download Resume",
     ctaSecondary: "View Experience",
+    cvFile: "/cv-en.pdf",                    
+    cvName: "Javier_Martinez_Resume_EN.pdf"
   }
 };
 
@@ -53,7 +57,11 @@ const content = lang === 'es' ? t.es : t.en;
     </p>
 
     <div class="flex flex-col sm:flex-row justify-center gap-4">
-      <a href="#contact" class="px-8 py-4 text-lg font-semibold rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1">
+      <a 
+        href={content.cvFile} 
+        download={content.cvName} 
+        class="px-8 py-4 text-lg font-semibold rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1"
+      >
         {content.ctaPrimary}
       </a>
       <a href="#projects" class="px-8 py-4 text-lg font-semibold rounded-full bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
