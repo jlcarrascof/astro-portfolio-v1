@@ -1,0 +1,25 @@
+---
+// Obtenemos la URL actual en la que está el usuario (ej: /es/ o /en/)
+const currentPath = Astro.url.pathname;
+
+// Detectamos el idioma actual
+const currentLang = currentPath.startsWith('/en') ? 'en' : 'es';
+
+// Creamos la lógica "espejo"
+const targetLang = currentLang === 'es' ? 'en' : 'es';
+const label = currentLang === 'es' ? '🇺🇸 EN' : '🇪🇸 ES';
+
+// Reemplazamos la parte de la ruta para ir al otro idioma
+// Si está en /es/, lo mandamos a /en/. Si está en /en/, lo mandamos a /es/
+const targetUrl = currentLang === 'es' 
+  ? currentPath.replace('/es', '/en') 
+  : currentPath.replace('/en', '/es');
+---
+
+<a 
+  href={targetUrl}
+  class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 bg-gray-100 dark:bg-slate-800 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors border border-gray-200 dark:border-slate-700 shadow-sm"
+  aria-label={`Cambiar idioma a ${targetLang}`}
+>
+  {label}
+</a>

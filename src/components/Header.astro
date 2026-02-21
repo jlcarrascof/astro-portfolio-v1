@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import LanguageToggle from './LanguageToggle.astro'; // 🚀 1. Importamos el componente nuevo
 
 // Recibimos el idioma para saber a dónde apuntar los enlaces
 const { lang } = Astro.props;
@@ -12,6 +13,7 @@ const aboutLink = lang === 'es' ? '#sobre-mi' : '#about';
 <header class="fixed w-full top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
+      
       <div class="shrink-0">
         <a href={homeLink} class="text-2xl font-bold text-blue-600 dark:text-blue-400">
           Dev<span class="text-slate-900 dark:text-white">Portfolio</span>.
@@ -29,8 +31,8 @@ const aboutLink = lang === 'es' ? '#sobre-mi' : '#about';
 
       <div class="flex items-center space-x-4">
         <ThemeToggle />
-        <span class="text-sm font-bold text-gray-500">{lang.toUpperCase()}</span>
-      </div>
+        <LanguageToggle /> </div>
+      
     </div>
   </div>
 </header>
