@@ -62,7 +62,7 @@ const content = lang === 'es' ? t.es : t.en;
 
 <script is:inline>
   // Tu URL de n8n (Asegúrate que coincida con la de tu webhook test)
-  const WEBHOOK_URL = "http://localhost:5678/webhook-test/contact";
+  const WEBHOOK_URL = import.meta.env.PUBLIC_N8N_WEBHOOK_URL;
 
   const form = document.getElementById('contact-form');
   
