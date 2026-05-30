@@ -7,7 +7,7 @@ const currentLang = currentPath.startsWith('/en') ? 'en' : 'es';
 
 // Creamos la lógica "espejo"
 const targetLang = currentLang === 'es' ? 'en' : 'es';
-const label = currentLang === 'es' ? '🇺🇸 EN' : '🇪🇸 ES';
+const label = currentLang === 'es' ? '🇺🇸' : '🇪🇸';
 
 // Reemplazamos la parte de la ruta para ir al otro idioma
 // Si está en /es/, lo mandamos a /en/. Si está en /en/, lo mandamos a /es/
@@ -18,8 +18,12 @@ const targetUrl = currentLang === 'es'
 
 <a 
   href={targetUrl}
-  class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 bg-gray-100 dark:bg-slate-800 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors border border-gray-200 dark:border-slate-700 shadow-sm"
+  class="inline-flex items-center justify-center p-2 bg-gray-100 dark:bg-slate-800 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors border border-gray-200 dark:border-slate-700 shadow-sm"
   aria-label={`Cambiar idioma a ${targetLang}`}
 >
-  {label}
+  {currentLang === 'es' ? (
+    <img src="https://flagcdn.com/us.svg" width="24" alt="English" class="rounded-sm shadow-sm opacity-90 hover:opacity-100 transition-opacity" />
+  ) : (
+    <img src="https://flagcdn.com/es.svg" width="24" alt="Español" class="rounded-sm shadow-sm opacity-90 hover:opacity-100 transition-opacity" />
+  )}
 </a>
