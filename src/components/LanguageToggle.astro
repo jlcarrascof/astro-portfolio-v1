@@ -1,25 +1,41 @@
 ---
-// Obtenemos la URL actual en la que está el usuario (ej: /es/ o /en/)
+// Obtenemos la URL actual en la que está el usuario
 const currentPath = Astro.url.pathname;
 
 // Detectamos el idioma actual
 const currentLang = currentPath.startsWith('/en') ? 'en' : 'es';
 
-// Creamos la lógica "espejo"
-const targetLang = currentLang === 'es' ? 'en' : 'es';
-const label = currentLang === 'es' ? '🇺🇸 EN' : '🇪🇸 ES';
+// Construimos las URLs para ambos botones
+const urlEs = currentLang === 'es' ? currentPath : currentPath.replace('/en', '/es');
+const urlEn = currentLang === 'en' ? currentPath : currentPath.replace('/es', '/en');
 
-// Reemplazamos la parte de la ruta para ir al otro idioma
-// Si está en /es/, lo mandamos a /en/. Si está en /en/, lo mandamos a /es/
-const targetUrl = currentLang === 'es' 
-  ? currentPath.replace('/es', '/en') 
-  : currentPath.replace('/en', '/es');
+// Clases CSS compartidas para los botones (activos vs inactivos)
+const baseClasses = "p-1.5 rounded-md transition-all duration-200 flex items-center justify-center";
+const activeClasses = "bg-white dark:bg-slate-600 shadow-sm opacity-100 ring-1 ring-gray-200 dark:ring-gray-500 scale-105";
+const inactiveClasses = "opacity-50 hover:opacity-100 hover:bg-gray-200 dark:hover:bg-slate-700 grayscale-[50%] hover:grayscale-0";
 ---
 
-<a 
-  href={targetUrl}
-  class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 bg-gray-100 dark:bg-slate-800 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors border border-gray-200 dark:border-slate-700 shadow-sm"
-  aria-label={`Cambiar idioma a ${targetLang}`}
->
-  {label}
-</a>
+<div class="inline-flex items-center p-1 bg-gray-100 dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 shadow-inner">
+  <!-- Botón Español -->
+  <a 
+    href={urlEs}
+    class={`${baseClasses} ${currentLang === 'es' ? activeClasses : inactiveClasses}`}
+    aria-label="Español"
+    title="Español"
+  >
+    <img src="https://flagcdn.com/es.svg" width="20" alt="Español" class="rounded-sm shadow-sm" />
+  </a>
+
+  <!-- Separador sutil -->
+  <div class="w-px h-4 bg-gray-300 dark:bg-slate-600 mx-1"></div>
+
+  <!-- Botón Inglés -->
+  <a 
+    href={urlEn}
+    class={`${baseClasses} ${currentLang === 'en' ? activeClasses : inactiveClasses}`}
+    aria-label="English"
+    title="English"
+  >
+    <img src="https://flagcdn.com/us.svg" width="20" alt="English" class="rounded-sm shadow-sm" />
+  </a>
+</div>

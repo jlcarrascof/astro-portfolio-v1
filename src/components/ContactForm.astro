@@ -1,5 +1,6 @@
 ---
 const { lang } = Astro.props;
+const webhookUrl = import.meta.env.PUBLIC_N8N_WEBHOOK_URL;
 
 const t = {
   es: {
@@ -37,7 +38,7 @@ const content = lang === 'es' ? t.es : t.en;
     <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 md:p-12 border border-gray-100 dark:border-slate-700 relative overflow-hidden">
       <div class="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full bg-blue-500/10 blur-2xl"></div>
       
-      <form id="contact-form" class="space-y-6 relative z-10">
+      <form id="contact-form" data-webhook-url={webhookUrl} class="space-y-6 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{content.name}</label>
@@ -61,12 +62,12 @@ const content = lang === 'es' ? t.es : t.en;
 </section>
 
 <script is:inline>
-  // Tu URL de n8n (Asegúrate que coincida con la de tu webhook test)
-  const WEBHOOK_URL = "http://localhost:5678/webhook-test/contact";
-
+  // URL leída desde el data-attribute del form (compatible con is:inline)
   const form = document.getElementById('contact-form');
-  
-  if (form) {
+  const WEBHOOK_URL = form?.dataset?.webhookUrl;
+
+
+  if (form && WEBHOOK_URL) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault(); // 🛑 IMPORTANTE: Esto evita que la página se recargue
       
