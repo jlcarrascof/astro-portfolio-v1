@@ -1,16 +1,15 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
 import LanguageToggle from './LanguageToggle.astro';
+import { getSiteConfig } from '../data/site';
 
 const { lang } = Astro.props;
-
+const site = getSiteConfig(lang);
 const homeLink = lang === 'es' ? '/es' : '/en';
-const projectsLink = '#projects';
-const aboutLink = '#about';
 
 const navItems = [
-  { href: projectsLink, label: lang === 'es' ? 'Proyectos' : 'Projects' },
-  { href: aboutLink,    label: lang === 'es' ? 'Sobre Mí' : 'About Me' },
+  { href: '#projects', label: site.nav.projects },
+  { href: '#about',    label: site.nav.about },
 ];
 ---
 

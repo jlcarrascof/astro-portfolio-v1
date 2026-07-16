@@ -1,32 +1,9 @@
 ---
+import { getSiteConfig } from '../data/site';
+
 const { lang } = Astro.props;
-
-const t = {
-  es: {
-    badge: "Disponible para contratación inmediata",
-    title: "Ingeniero de Software",
-    titleHighlight: "Full Stack & Cloud.",
-    subtitle: "Desarrollador con experiencia en arquitecturas escalables. Especializado en NestJS, Vue 3, Docker y AWS. Busco aportar valor en equipos de alto rendimiento.",
-    ctaPrimary: "Descargar CV", 
-    ctaSecondary: "Ver Proyectos",
-    cvFile: "/cv-es.pdf",                     
-    cvName: "Javier_Martinez_CV_ES.pdf",
-    photoAlt: "Javier J. Martínez F. — Ingeniero de Software"
-  },
-  en: {
-    badge: "Available for immediate hire",
-    title: "Software Engineer",
-    titleHighlight: "Full Stack & Cloud.",
-    subtitle: "Developer experienced in scalable architectures. Specialized in NestJS, Vue 3, Docker, and AWS. Looking to drive value in high-performance teams.",
-    ctaPrimary: "Download Resume",
-    ctaSecondary: "View Projects",
-    cvFile: "/cv-en.pdf",                    
-    cvName: "Javier_Martinez_CV_EN.pdf",
-    photoAlt: "Javier J. Martínez F. — Software Engineer"
-  }
-};
-
-const content = lang === 'es' ? t.es : t.en;
+const site = getSiteConfig(lang);
+const hero = site.hero;
 ---
 
 <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
@@ -49,33 +26,33 @@ const content = lang === 'es' ? t.es : t.en;
             <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
           </span>
           <span class="text-sm font-medium text-blue-800 dark:text-blue-200">
-            {content.badge}
+            {hero.badge}
           </span>
         </div>
 
         <!-- Heading -->
         <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6">
-          {content.title} <br class="hidden md:block" />
+          {hero.title} <br class="hidden md:block" />
           <span class="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-            {content.titleHighlight}
+            {hero.titleHighlight}
           </span>
         </h1>
 
         <p class="mt-4 text-xl text-slate-600 dark:text-slate-300 max-w-2xl lg:max-w-none mb-10">
-          {content.subtitle}
+          {hero.subtitle}
         </p>
 
         <!-- CTAs -->
         <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
           <a 
-            href={content.cvFile} 
-            download={content.cvName} 
+            href={hero.cvFile} 
+            download={hero.cvName} 
             class="px-8 py-4 text-lg font-semibold rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1"
           >
-            {content.ctaPrimary}
+            {hero.ctaPrimary}
           </a>
           <a href="#projects" class="px-8 py-4 text-lg font-semibold rounded-full bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
-            {content.ctaSecondary}
+            {hero.ctaSecondary}
           </a>
         </div>
 
@@ -90,7 +67,7 @@ const content = lang === 'es' ? t.es : t.en;
           <div class="relative w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl">
             <img
               src="/profile.png"
-              alt={content.photoAlt}
+              alt={hero.photoAlt}
               class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
             />
           </div>
