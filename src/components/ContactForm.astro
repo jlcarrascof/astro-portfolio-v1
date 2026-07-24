@@ -1,37 +1,20 @@
 ---
+import { getSiteConfig } from '../data/site';
+
 const { lang } = Astro.props;
+const site = getSiteConfig(lang);
+const contact = site.contact;
 const webhookUrl = import.meta.env.PUBLIC_N8N_WEBHOOK_URL;
-
-const t = {
-  es: {
-    title: "¿Buscando Talento Tech?",
-    subtitle: "Hablemos sobre cómo puedo integrarme a tu equipo y aportar valor desde el primer día.",
-    name: "Nombre del Recruiter / Empresa",
-    email: "Correo Corporativo",
-    message: "Detalles sobre la vacante...",
-    btn: "Iniciar Conversación",
-  },
-  en: {
-    title: "Looking for Tech Talent?",
-    subtitle: "Let's discuss how I can join your team and deliver value from day one.",
-    name: "Recruiter Name / Company",
-    email: "Corporate Email",
-    message: "Details about the role...",
-    btn: "Start Conversation",
-  }
-};
-
-const content = lang === 'es' ? t.es : t.en;
 ---
 
 <section id="contact" class="py-20 bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-        {content.title}
+        {contact.title}
       </h2>
       <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-        {content.subtitle}
+        {contact.subtitle}
       </p>
     </div>
 
@@ -41,20 +24,20 @@ const content = lang === 'es' ? t.es : t.en;
       <form id="contact-form" data-webhook-url={webhookUrl} class="space-y-6 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{content.name}</label>
+            <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{contact.name}</label>
             <input type="text" name="name" id="name" required class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all" />
           </div>
           <div>
-            <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{content.email}</label>
+            <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{contact.email}</label>
             <input type="email" name="email" id="email" required class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all" />
           </div>
         </div>
         <div>
-          <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{content.message}</label>
+          <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{contact.message}</label>
           <textarea name="message" id="message" rows="4" required class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none"></textarea>
         </div>
         <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-all shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1">
-          {content.btn}
+          {contact.btn}
         </button>
       </form>
     </div>
@@ -62,23 +45,19 @@ const content = lang === 'es' ? t.es : t.en;
 </section>
 
 <script is:inline>
-  // URL leída desde el data-attribute del form (compatible con is:inline)
   const form = document.getElementById('contact-form');
   const WEBHOOK_URL = form?.dataset?.webhookUrl;
 
-
   if (form && WEBHOOK_URL) {
     form.addEventListener('submit', async (e) => {
-      e.preventDefault(); // 🛑 IMPORTANTE: Esto evita que la página se recargue
+      e.preventDefault();
       
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerText;
 
-      // Estado visual: "Enviando..."
       submitBtn.innerText = "Enviando... 🚀";
       submitBtn.disabled = true;
 
-      // Capturar los datos del formulario
       const formData = new FormData(form);
       const data = {
         name: formData.get('name'),
@@ -88,20 +67,17 @@ const content = lang === 'es' ? t.es : t.en;
       };
 
       try {
-        // Enviar los datos a n8n
         await fetch(WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
 
-        // Éxito visual
         submitBtn.innerText = "¡Recibido! ✅";
         submitBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
         submitBtn.classList.add('bg-green-600', 'text-white');
-        form.reset(); // Limpia el formulario
+        form.reset();
 
-        // Restaurar botón a los 3 segundos
         setTimeout(() => {
           submitBtn.innerText = originalText;
           submitBtn.disabled = false;

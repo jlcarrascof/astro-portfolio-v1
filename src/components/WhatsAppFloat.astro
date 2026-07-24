@@ -1,15 +1,10 @@
 ---
+import { getSiteConfig } from '../data/site';
+
 const { lang } = Astro.props;
-
+const site = getSiteConfig(lang);
 const phoneNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
-
-const messages = {
-  es: "Hola, vi tu portafolio y me gustaría saber más.",
-  en: "Hi, I saw your portfolio and I'd like to know more."
-};
-
-const message = lang === 'en' ? messages.en : messages.es;
-const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(site.whatsapp)}`;
 ---
 
 <a 
