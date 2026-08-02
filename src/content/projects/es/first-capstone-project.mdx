@@ -1,0 +1,31 @@
+---
+title: "Capstone Level 1 — Portafolio Individual (Roland Garros)"
+description: "Plataforma web promocional e informativa para eventos deportivos construida con HTML5 semántico, CSS3 Flexbox y JavaScript ES6+ dinámico."
+image: "/projects/capstone-solo-cover.png"
+tags:
+  - "HTML5"
+  - "CSS3"
+  - "JavaScript ES6+"
+  - "WCAG 2.1 AA"
+  - "GPU 60fps"
+githubUrl: "https://github.com/jlcarrascof/first-capstone-project"
+liveUrl: "https://jlcarrascof.github.io/first-capstone-project/"
+featured: true
+year: 2024
+---
+
+### 📌 Descripción del Proyecto
+**Roland Garros Tournament (Capstone Individual Level 1)** es una aplicación web promocional diseñada para difundir las fases del torneo internacional de tenis de Roland Garros, su historia y las fichas técnicas de los tenistas más destacados del circuito mundial.
+
+### 🛠️ Desafíos Técnicos Resueltos
+- **Accesibilidad WCAG 2.1 AA:** Inclusión de atributos `aria-label`, `role="button"` y navegación por teclado en menús e íconos sociales. Reordenamiento de la jerarquía semántica de encabezados (`<h1>` -> `<h2>`) sin saltos de nivel.
+- **Navegación Móvil GPU 60fps:** Reemplazo de animaciones pesadas de CPU (`margin-left`) por transformaciones de aceleración por tarjeta de video (`transform: translateX()`), logrando un desplazamiento fluido a 60 fotogramas por segundo con cierre automático en enlaces y tecla **`ESC`**.
+- **Sintaxis HTML5 Estricta:** Envoltorio semántico de listas de patrocinadores (`<ul>` -> `<li>`) y consolidación de imágenes duplicadas en el DOM para una carga ultra liviana.
+- **Renderizado Dinámico Limpio:** Eliminación de errores 404 de red mediante plantillas DOM nativas para la generación de tarjetas de tenistas destacados.
+- **Rendimiento de Red:** Integración de enlaces `<link rel="preconnect">` para optimizar la negociación de fuentes e íconos desde CDNs externos.
+
+### 🚀 Stack & Herramientas
+- **Estructura:** HTML5 Semántico
+- **Estilos:** CSS3 Nativo (Aceleración GPU, Flexbox, Media Queries)
+- **Lógica:** JavaScript ES6+ (DOM Manipulation, Event Listeners)
+- **Calidad:** Stylelint & ESLint Compliance
