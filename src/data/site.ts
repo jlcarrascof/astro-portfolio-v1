@@ -25,6 +25,7 @@ export interface SiteConfig {
     cvFile: string;
     cvName: string;
     photoAlt: string;
+    statusLabel: string;
   };
   experience: {
     title: string;
@@ -77,6 +78,7 @@ export const siteES: SiteConfig = {
     cvFile: "/cv-es.pdf",
     cvName: "Javier_Martinez_CV_ES.pdf",
     photoAlt: "Javier J. Martínez F. — Ingeniero de Software Senior",
+    statusLabel: "Disponible",
   },
   experience: {
     title: "Arsenal Tecnológico",
@@ -137,6 +139,7 @@ export const siteEN: SiteConfig = {
     cvFile: "/cv-en.pdf",
     cvName: "Javier_Martinez_CV_EN.pdf",
     photoAlt: "Javier J. Martínez F. — Senior Software Engineer",
+    statusLabel: "Open to work",
   },
   experience: {
     title: "Tech Stack",
