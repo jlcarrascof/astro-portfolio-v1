@@ -1,0 +1,31 @@
+---
+title: "Commerce Platform — Symfony + Vue 3"
+description: "Plataforma de e-commerce full-stack con API en Symfony 7, storefront en Vue 3, confirmación de pedidos asíncrona y stack dockerizado con Postgres/Redis."
+image: "/projects/commerce-platform-cover.png"
+tags:
+  - "Symfony 7"
+  - "Vue 3"
+  - "Doctrine ORM"
+  - "Pinia"
+  - "PostgreSQL"
+  - "Redis"
+  - "Docker"
+githubUrl: "https://github.com/jlcarrascof/commerce-platform-symfony"
+featured: true
+year: 2026
+---
+
+### 📌 Descripción del proyecto
+Plataforma de comercio full-stack construida para demostrar un backend con forma de producción, no solo un CRUD de demo: autenticación JWT con refresh tokens, autorización basada en roles, procesamiento asíncrono de pedidos, auditoría de acciones y caché respaldada por Redis — junto a un storefront y panel admin en Vue 3 totalmente pulidos.
+
+### 🛠️ Retos técnicos clave resueltos
+- **Confiabilidad de sesión JWT:** diagnostiqué una expiración silenciosa de tokens que causaba errores confusos en el checkout, resuelto con un interceptor de Axios que refresca tokens expirados automáticamente y cae en un flujo claro de sesión expirada cuando no es posible.
+- **Aislamiento de carrito entre usuarios:** detecté y corregí una clave compartida de `localStorage` que filtraba el carrito de un usuario a la sesión de otro en el mismo navegador — ahora la clave se deriva por usuario desde el JWT, así un usuario que vuelve conserva su propio carrito.
+- **Autorización con Voters:** las acciones de confirmar/cancelar pedido están protegidas por un `Voter` personalizado de Symfony, que da acceso a administradores o al cliente dueño del pedido — no una verificación de rol hardcodeada.
+- **Efectos secundarios asíncronos:** la confirmación de un pedido despacha un mensaje de Symfony Messenger, procesado por un handler dedicado que registra la acción y simula el paso de notificación sin bloquear la petición.
+- **UX de administración:** un layout master-detail de 3 columnas para la gestión de pedidos (lista → detalle → audit trail), un sidebar de administración persistente, y un carrito flotante (drawer) en lugar de una página completa.
+
+### 🚀 Stack y herramientas
+- **Backend:** Symfony 7, Doctrine ORM, PHPUnit (64 tests), PHPStan nivel 8
+- **Frontend:** Vue 3, TypeScript, Pinia, vue-i18n (EN/ES)
+- **Infraestructura:** Docker Compose (PHP-FPM, Nginx, PostgreSQL, Redis)
