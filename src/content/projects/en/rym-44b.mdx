@@ -1,0 +1,33 @@
+---
+title: "Rick & Morty Multiverse Explorer"
+description: "Full-stack character explorer for the Rick & Morty API, with user accounts, favorites, and a monorepo deployed across Vercel and Render."
+image: "/projects/rym-44b-cover.png"
+tags:
+  - "React"
+  - "Redux Toolkit"
+  - "Express"
+  - "Sequelize"
+  - "PostgreSQL"
+  - "Vercel"
+  - "Render"
+githubUrl: "https://github.com/jlcarrascof/rym-44b"
+liveUrl: "https://rym-44b.vercel.app"
+featured: true
+year: 2026
+---
+
+### 📌 Project Description
+A full-stack monorepo app to browse, search, and favorite characters from the Rick & Morty universe. Users create an account, search by character ID, and save favorites tied to their profile — persisted in a real Postgres database, not local storage.
+
+**Try it live:** `demo@rym.dev` / `demo1234`
+
+### 🛠️ Key Technical Challenges Resolved
+- **Case-sensitive import bug:** a component import worked fine on Windows (case-insensitive filesystem) but broke the Linux-based production build (`Could not resolve "../Card/Card"`) — fixed by matching the import path to the actual folder casing.
+- **Expired database recovery:** Render's free Postgres tier deletes databases after 30 days of inactivity, which silently killed the backend (`ENOTFOUND` on the DB host). Migrated to Neon's serverless Postgres, which doesn't expire, and added SSL-aware connection handling for managed Postgres providers.
+- **Fail-fast startup:** the server used to log a failed DB sync and then hang without ever binding a port, making outages invisible to the hosting platform. Now it exits non-zero on sync failure so the platform correctly flags the deploy as broken.
+- **Monorepo deploy wiring:** a `vercel.json` rewrite proxies `/rickandmorty/*` requests from the React frontend straight to the Express API on Render, avoiding CORS complexity and keeping a single public origin.
+
+### 🚀 Stack & Tooling
+- **Frontend:** React 18, Redux Toolkit, React Router, styled-components, Vite
+- **Backend:** Node.js, Express, Sequelize ORM, bcrypt password hashing
+- **Infrastructure:** PostgreSQL (Neon), deployed on Vercel (frontend) + Render (API)

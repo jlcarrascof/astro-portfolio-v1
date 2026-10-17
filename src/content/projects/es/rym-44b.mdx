@@ -1,0 +1,33 @@
+---
+title: "Rick & Morty Multiverse Explorer"
+description: "Explorador de personajes full-stack para la API de Rick & Morty, con cuentas de usuario, favoritos, y un monorepo desplegado en Vercel y Render."
+image: "/projects/rym-44b-cover.png"
+tags:
+  - "React"
+  - "Redux Toolkit"
+  - "Express"
+  - "Sequelize"
+  - "PostgreSQL"
+  - "Vercel"
+  - "Render"
+githubUrl: "https://github.com/jlcarrascof/rym-44b"
+liveUrl: "https://rym-44b.vercel.app"
+featured: true
+year: 2026
+---
+
+### 📌 Descripción del proyecto
+Una app monorepo full-stack para explorar, buscar y marcar como favoritos personajes del universo de Rick & Morty. Los usuarios crean una cuenta, buscan por ID de personaje, y guardan favoritos ligados a su perfil — persistidos en una base de datos Postgres real, no en local storage.
+
+**Pruébala en vivo:** `demo@rym.dev` / `demo1234`
+
+### 🛠️ Retos técnicos clave resueltos
+- **Bug de import sensible a mayúsculas:** un import de componente funcionaba bien en Windows (filesystem no distingue mayúsculas) pero rompía el build de producción en Linux (`Could not resolve "../Card/Card"`) — corregido ajustando el path del import al nombre real de la carpeta.
+- **Recuperación de base de datos expirada:** el plan free de Postgres en Render elimina las bases de datos tras 30 días de inactividad, lo cual mató el backend silenciosamente (`ENOTFOUND` en el host de la DB). Migré a Postgres serverless de Neon, que no expira, y agregué manejo de conexión consciente de SSL para proveedores de Postgres gestionado.
+- **Arranque fail-fast:** el servidor registraba un fallo de sync de la DB y luego se quedaba colgado sin nunca abrir un puerto, haciendo las caídas invisibles para la plataforma de hosting. Ahora sale con código de error si el sync falla, para que la plataforma detecte correctamente el deploy roto.
+- **Cableado de deploy en monorepo:** un rewrite en `vercel.json` redirige las peticiones `/rickandmorty/*` del frontend en React directo a la API en Express en Render, evitando la complejidad de CORS y manteniendo un solo origen público.
+
+### 🚀 Stack y herramientas
+- **Frontend:** React 18, Redux Toolkit, React Router, styled-components, Vite
+- **Backend:** Node.js, Express, Sequelize ORM, hashing de contraseñas con bcrypt
+- **Infraestructura:** PostgreSQL (Neon), desplegado en Vercel (frontend) + Render (API)
