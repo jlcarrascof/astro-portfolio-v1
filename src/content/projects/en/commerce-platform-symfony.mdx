@@ -1,0 +1,31 @@
+---
+title: "Commerce Platform — Symfony + Vue 3"
+description: "Full-stack e-commerce platform with a Symfony 7 API, Vue 3 storefront, async order confirmation, and a Dockerized Postgres/Redis stack."
+image: "/projects/commerce-platform-cover.png"
+tags:
+  - "Symfony 7"
+  - "Vue 3"
+  - "Doctrine ORM"
+  - "Pinia"
+  - "PostgreSQL"
+  - "Redis"
+  - "Docker"
+githubUrl: "https://github.com/jlcarrascof/commerce-platform-symfony"
+featured: true
+year: 2026
+---
+
+### 📌 Project Description
+A full-stack commerce platform built to demonstrate a production-shaped backend, not just a CRUD demo: JWT auth with refresh tokens, role-based authorization, async order processing, audit logging, and a Redis-backed cache — paired with a polished Vue 3 storefront and admin panel.
+
+### 🛠️ Key Technical Challenges Resolved
+- **JWT session reliability:** diagnosed silent token expiration causing confusing checkout failures, fixed with an Axios interceptor that auto-refreshes expired tokens and falls back to a clear session-expired flow.
+- **Cross-user cart isolation:** found and fixed a shared `localStorage` cart key that leaked one user's cart into another's session on the same browser — now keyed per user from the JWT, so a returning user keeps their own cart.
+- **Authorization with Voters:** order confirm/cancel actions are gated by a custom Symfony `Voter`, granting access to admins or the order's own customer — not a hardcoded role check.
+- **Async side effects:** order confirmation dispatches a Symfony Messenger message, processed by a dedicated handler that logs the action and simulates the notification step without blocking the request.
+- **Admin UX:** a 3-column master-detail layout for order management (list → detail → audit trail), a persistent admin sidebar, and a floating cart drawer instead of a full-page cart.
+
+### 🚀 Stack & Tooling
+- **Backend:** Symfony 7, Doctrine ORM, PHPUnit (64 tests), PHPStan level 8
+- **Frontend:** Vue 3, TypeScript, Pinia, vue-i18n (EN/ES)
+- **Infrastructure:** Docker Compose (PHP-FPM, Nginx, PostgreSQL, Redis)
